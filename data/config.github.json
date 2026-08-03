@@ -6,13 +6,13 @@
     "api_key_env": "DEEPSEEK_API_KEY",
     "temperature": 0.3,
     "max_tokens": 8192,
-    "throttle_sec": 0,
+    "throttle_sec": 1,
     "languages": [
       "zh",
       "en"
     ],
-    "analysis_concurrency": 4,
-    "enrichment_concurrency": 2
+    "analysis_concurrency": 5,
+    "enrichment_concurrency": 5
   },
   "processing": {
     "profiles_dir": "profiles",
@@ -32,34 +32,12 @@
       }
     }
   },
-  "display": {
-    "icon_style": "emoji"
-  },
-  "email": {
-    "enabled": false,
-    "smtp_server": "smtp.qq.com",
-    "smtp_port": 465,
-    "imap_server": "imap.qq.com",
-    "imap_port": 993,
-    "email_address": "xxx@qq.com",
-    "sender_name": "Horizon Daily",
-    "subscribe_keyword": "SUBSCRIBE",
-    "unsubscribe_keyword": "UNSUBSCRIBE"
-  },
   "sources": {
     "github": [
       {
         "type": "user_events",
         "username": "karpathy",
         "enabled": true,
-        "category": "ai",
-        "profile": "tech-news"
-      },
-      {
-        "type": "user_events",
-        "username": "simonw",
-        "enabled": true,
-        "category": "ai",
         "profile": "tech-news"
       },
       {
@@ -67,7 +45,6 @@
         "owner": "vllm-project",
         "repo": "vllm",
         "enabled": true,
-        "category": "ai",
         "profile": "tech-news"
       },
       {
@@ -75,47 +52,20 @@
         "owner": "sgl-project",
         "repo": "sglang",
         "enabled": true,
-        "category": "ai",
         "profile": "tech-news"
       },
       {
         "type": "repo_releases",
-        "owner": "huggingface",
-        "repo": "transformers",
+        "owner": "triton-lang",
+        "repo": "triton",
         "enabled": true,
-        "category": "ai",
-        "profile": "tech-news"
-      },
-      {
-        "type": "repo_releases",
-        "owner": "ollama",
-        "repo": "ollama",
-        "enabled": true,
-        "category": "ai",
-        "profile": "tech-news"
-      },
-      {
-        "type": "repo_releases",
-        "owner": "langchain-ai",
-        "repo": "langchain",
-        "enabled": true,
-        "category": "ai",
-        "profile": "tech-news"
-      },
-      {
-        "type": "repo_releases",
-        "owner": "astral-sh",
-        "repo": "uv",
-        "enabled": true,
-        "category": "devtools",
         "profile": "tech-news"
       }
     ],
     "hackernews": {
       "enabled": true,
       "fetch_top_stories": 30,
-      "min_score": 100,
-      "category": "tech",
+      "min_score": 150,
       "profile": "tech-news"
     },
     "rss": [
@@ -127,45 +77,32 @@
         "profile": "tech-news"
       },
       {
-        "name": "Hugging Face Blog",
-        "url": "https://huggingface.co/blog/feed.xml",
+        "name": "CNBC Finance",
+        "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664",
         "enabled": true,
-        "category": "ai-ml",
-        "profile": "tech-news"
-      },
-      {
-        "name": "Import AI",
-        "url": "https://importai.substack.com/feed",
-        "enabled": true,
-        "category": "ai-news",
-        "profile": "tech-news"
-      },
-      {
-        "name": "OpenAI News",
-        "url": "https://openai.com/news/rss.xml",
-        "enabled": true,
-        "category": "ai-news",
-        "profile": "tech-news"
-      },
-      {
-        "name": "量子位",
-        "url": "https://wechat2rss.xlab.app/feed/7131b577c61365cb47e81000738c10d872685908.xml",
-        "enabled": true,
-        "category": "ai-news",
-        "profile": "tech-news"
-      },
-      {
-        "name": "AI新智元",
-        "url": "https://wechat2rss.xlab.app/feed/ede30346413ea70dbef5d485ea5cbb95cca446e7.xml",
-        "enabled": true,
-        "category": "ai-news",
-        "profile": "tech-news"
+        "category": "finance",
+        "profile": "finance-news",
+        "content_extractor": "trafilatura"
       },
       {
         "name": "GitHub Trending - Daily",
         "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml",
         "enabled": true,
         "category": "github-trending",
+        "profile": "tech-news"
+      },
+      {
+        "name": "Semianalysis",
+        "url": "https://newsletter.semianalysis.com/feed",
+        "enabled": true,
+        "category": "semiconductors",
+        "profile": "tech-news"
+      },
+      {
+        "name": "LWN.net",
+        "url": "https://lwn.net/headlines/full_text?key=${LWN_KEY}",
+        "enabled": true,
+        "category": "linux-kernel",
         "profile": "tech-news"
       }
     ],
@@ -179,7 +116,6 @@
           "time_filter": "day",
           "fetch_limit": 10,
           "min_score": 60,
-          "category": "ai-ml",
           "profile": "tech-news"
         },
         {
@@ -189,17 +125,6 @@
           "time_filter": "day",
           "fetch_limit": 10,
           "min_score": 60,
-          "category": "ai-ml",
-          "profile": "tech-news"
-        },
-        {
-          "subreddit": "artificial",
-          "enabled": true,
-          "sort": "hot",
-          "time_filter": "day",
-          "fetch_limit": 10,
-          "min_score": 40,
-          "category": "ai-news",
           "profile": "tech-news"
         }
       ],
@@ -213,107 +138,119 @@
           "channel": "zaihuapd",
           "enabled": true,
           "fetch_limit": 20,
-          "category": "ai-news",
           "profile": [
             "tech-news",
-            "tech-blog"
+            "finance-news"
           ]
         }
       ]
     },
-    "ossinsight": {
-      "enabled": true,
-      "period": "past_24_hours",
-      "languages": [
-        "All",
-        "Python",
-        "TypeScript"
-      ],
-      "keywords": [],
-      "min_stars": 10,
-      "max_items": 20,
-      "category": "oss-trending",
-      "profile": "tech-news"
-    },
-    "twitter": {
-      "enabled": false,
-      "users": [
-        "karpathy",
-        "ylecun",
-        "hwchase17"
-      ],
-      "fetch_limit": 10,
-      "category": "social",
-      "fetch_reply_text": false,
-      "max_replies_per_tweet": 3,
-      "max_tweets_to_expand": 10,
-      "reply_min_likes": 5,
-      "profile": "tech-news"
-    },
     "google_news": {
-      "enabled": false,
-      "query": "artificial intelligence",
+      "enabled": true,
+      "query": "semiconductors OR precious metals OR gold OR consumer staples OR value investing",
       "language": "en",
       "country": "US",
+      "ceid": null,
       "max_results": 50,
-      "category": "news",
-      "profile": "tech-news"
+      "category": "finance",
+      "profile": "finance-news"
     },
     "openbb": {
-      "enabled": false,
-      "watchlists": []
-    },
-    "gdelt": {
-      "enabled": false
+      "enabled": true,
+      "watchlists": [
+        {
+          "name": "semiconductors",
+          "symbols": [
+            "NVDA",
+            "TSM",
+            "ASML",
+            "AMD",
+            "AVGO"
+          ],
+          "enabled": true,
+          "provider": "yfinance",
+          "fetch_limit": 20,
+          "category": "semiconductors",
+          "profile": "finance-news"
+        },
+        {
+          "name": "precious-metals",
+          "symbols": [
+            "GLD",
+            "SLV",
+            "GDX",
+            "NEM",
+            "AEM"
+          ],
+          "enabled": true,
+          "provider": "yfinance",
+          "fetch_limit": 20,
+          "category": "precious-metals",
+          "profile": "finance-news"
+        },
+        {
+          "name": "consumer-value",
+          "symbols": [
+            "PG",
+            "KO",
+            "WMT",
+            "COST",
+            "MCD"
+          ],
+          "enabled": true,
+          "provider": "yfinance",
+          "fetch_limit": 20,
+          "category": "consumer",
+          "profile": "finance-news"
+        },
+        {
+          "name": "value-investing",
+          "symbols": [
+            "BRK-B",
+            "JNJ",
+            "UNH",
+            "CVX",
+            "XOM"
+          ],
+          "enabled": true,
+          "provider": "yfinance",
+          "fetch_limit": 20,
+          "category": "value-investing",
+          "profile": "finance-news"
+        }
+      ],
+      "fetch_filings": false,
+      "filings_provider": "sec"
     }
   },
   "collection": {
     "time_window_hours": 24
   },
   "digest": {
-    "max_items": 20,
+    "max_items": null,
     "profile_order": [
       "tech-news",
       "tech-blog",
       "finance-news"
     ],
     "category_groups": {
-      "ai": {
-        "name": "AI 动态",
+      "finance": {
+        "name": "金融与大类资产",
         "limit": 8,
         "categories": [
-          "ai",
-          "ai-news",
-          "ai-tools",
-          "ai-ml",
-          "llm"
-        ]
-      },
-      "oss": {
-        "name": "开源与工具",
-        "limit": 6,
-        "categories": [
-          "oss-trending",
-          "github-trending",
-          "devtools",
-          "oss"
-        ]
-      },
-      "other": {
-        "name": "其他",
-        "limit": 6,
-        "categories": [
-          "tech",
-          "news",
-          "social"
+          "finance",
+          "semiconductors",
+          "precious-metals",
+          "consumer",
+          "value-investing"
         ]
       }
     },
     "default_group": "other",
-    "default_group_limit": 6
+    "default_group_limit": null
   },
   "webhook": {
-    "enabled": false,
+    "enabled": true,
     "url_env": "HORIZON_WEBHOOK_URL",
     "delivery": "summary_and_items",
     "overview_position": "last",
