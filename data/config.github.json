@@ -104,6 +104,21 @@
         "enabled": true,
         "category": "linux-kernel",
         "profile": "tech-news"
+      },
+      {
+        "name": "Federal Reserve",
+        "url": "https://www.federalreserve.gov/feeds/press_all.xml",
+        "enabled": true,
+        "category": "policy",
+        "profile": "finance-news"
+      },
+      {
+        "name": "OilPrice.com",
+        "url": "https://oilprice.com/rss/main",
+        "enabled": true,
+        "category": "oil-energy",
+        "profile": "finance-news",
+        "content_extractor": "trafilatura"
       }
     ],
     "reddit": {
@@ -147,7 +162,7 @@
     },
     "google_news": {
       "enabled": true,
-      "query": "semiconductors OR precious metals OR gold OR consumer staples OR value investing",
+      "query": "Federal Reserve OR FOMC OR monetary policy OR central bank OR interest rate decision OR inflation OR CPI OR nonfarm payrolls OR GDP OR economic data OR oil price OR OPEC OR crude oil OR gold OR silver OR precious metals",
       "language": "en",
       "country": "US",
       "ceid": null,
@@ -217,6 +232,51 @@
           "fetch_limit": 20,
           "category": "value-investing",
           "profile": "finance-news"
+        },
+        {
+          "name": "oil-energy",
+          "symbols": [
+            "CL=F",
+            "BZ=F",
+            "USO",
+            "XLE",
+            "OIH"
+          ],
+          "enabled": true,
+          "provider": "yfinance",
+          "fetch_limit": 20,
+          "category": "oil-energy",
+          "profile": "finance-news"
+        },
+        {
+          "name": "gold-metals",
+          "symbols": [
+            "GC=F",
+            "SI=F",
+            "PA=F",
+            "PL=F",
+            "GDXJ"
+          ],
+          "enabled": true,
+          "provider": "yfinance",
+          "fetch_limit": 20,
+          "category": "gold-metals",
+          "profile": "finance-news"
+        },
+        {
+          "name": "macro-data",
+          "symbols": [
+            "UUP",
+            "TLT",
+            "IEF",
+            "SHY",
+            "^VIX"
+          ],
+          "enabled": true,
+          "provider": "yfinance",
+          "fetch_limit": 20,
+          "category": "macro",
+          "profile": "finance-news"
         }
       ],
       "fetch_filings": false,
@@ -236,11 +296,15 @@
     "category_groups": {
       "finance": {
         "name": "金融与大类资产",
-        "limit": 8,
+        "limit": 12,
         "categories": [
           "finance",
+          "policy",
+          "macro",
           "semiconductors",
           "precious-metals",
+          "gold-metals",
+          "oil-energy",
           "consumer",
           "value-investing"
         ]
@@ -250,7 +314,7 @@
     "default_group_limit": null
   },
   "webhook": {
-    "enabled": false,
+    "enabled": true,
     "url_env": "HORIZON_WEBHOOK_URL",
     "delivery": "summary_and_items",
     "overview_position": "last",
